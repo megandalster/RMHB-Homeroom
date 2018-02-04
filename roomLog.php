@@ -98,7 +98,7 @@ else{
 	echo ("Room Log for ".$formattedDate."</h3>");
 
 	display_navigation($date);
-	// display the 21 rooms
+	// display the 14 rooms
 	include_once("roomLogView.inc");
 ?>
 <!--  the footer goes here now --></div>

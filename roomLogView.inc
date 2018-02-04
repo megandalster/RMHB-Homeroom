@@ -12,17 +12,17 @@ $rooms = $roomLog->get_rooms();
 $pendingdayusecount = count(retrieve_pendingDayUse_dbBookings ($date));
 ?>
 
-<!-- THIS SECTION DISPLAYS THE 21 ROOMS AND THEIR INFORMATION -->
+<!-- THIS SECTION DISPLAYS THE 14 ROOMS AND THEIR INFORMATION -->
 <?php 
 echo ("<table align=\"center\">");
 
 // Use loops to construct each table row and column
-for($i = 0; $i < 3; $i++){
+for($i = 0; $i < 2; $i++){
 	// Three rows
 	echo ("<tr>");
 	for($j = 0; $j < 7; $j++){
 		// Retrieve the current room
-		$currentRoomID = substr($rooms[($i*7)+$j],0,3);
+		$currentRoomID = substr($rooms[($i*7)+$j],0,2);
 		$currentBookingID = substr($rooms[($i*7)+$j],4);
 		//echo ("current booking and room ids".$currentRoomID);
 		//echo ($currentBookingID);
@@ -79,7 +79,7 @@ for($i = 0; $i < 3; $i++){
 
 echo ("</tr></table>");
 
-
+/*
 echo("<p>");
 
 echo ("<b>Day Use Bookings: </b><br>");
@@ -137,7 +137,7 @@ echo ("</tr>");
 
 echo ("</tr></table>");
 
-
+*/
 
 /**
  * These functions help in printing out information

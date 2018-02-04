@@ -31,9 +31,8 @@ include_once(dirname(__FILE__).'/dbBookings.php');
  * retrieve all room_no:booking_id pairs for a given date
  */
 function retrieve_all_rooms($date) {
-    $room_data = array ("125y2T"=>2,"126yQ/3T"=>4,"151y2T"=>2,"152y2T"=>2,"214nQ"=>2,"215n2T"=>2,"218yQ"=>2,
-	"223nQ"=>2,"224n3T"=>3,"231y2T"=>2,"232n2T"=>2,"233n3T"=>3,"243yQ/3T"=>4,"244nQ"=>2,
-	"245nQ"=>2,"250y2T"=>2,"251y2T"=>2,"252yQ"=>2,"253yQ"=>2,"254y2T"=>2,"255y2T"=>2);
+    $room_data = array ("01"=>4,"02"=>4,"03"=>4,"04"=>4,"05"=>4,"06"=>4,
+	"07"=>4,"08"=>4,"09"=>4,"10"=>4, "11"=>4, "12"=>4, "13"=>4,"14"=>4);
     if ($date >= date('y-m-d'))
     	$active_bookings = retrieve_active_dbBookings($date);
     else 
@@ -41,7 +40,7 @@ function retrieve_all_rooms($date) {
     	
     $my_rooms = array();
 	foreach ($room_data as $room => $capacity){
-	    $room_no = substr($room, 0, 3);
+	    $room_no = substr($room, 0, 2);
 	    if (isset($active_bookings[$room_no]))
 		    $my_rooms[] = $room_no . ":" . $active_bookings[$room_no];
 		else $my_rooms[] =  $room_no . ":";
@@ -58,35 +57,6 @@ function retrieve_all_rooms($date) {
 		{
 			$my_rooms[] = $room_num . ":" . $bookingId;
 		}
-	/*	for($i=0; $i<($total_day_use_rooms_to_make/7); $i++)
-		{
-			for($j=0; $j<7; $j++)
-			{
-				$room_num = "0".$i.$j;
-				if( (7*$i+$j) == ($total_day_use_rooms_to_make))
-				{
-					break;
-				}
-				
-				if(isset($day_use_activeBookings[$room_num]))
-				{					
-					$my_rooms[] = $room_num . ":" . $day_use_activeBookings[$room_num];
-					//since its an active booking retrieve its room's status.
-					$currentRoom = retrieve_dbRooms($room_num,$date,$day_use_activeBookings[$room_num]);
-					$currentStatus = $currentRoom->get_status();
-					$currentBookingID = $currentRoom->get_booking_id();
-					
-					$day_use_room = new Room($room_num, null, null, null, $currentStatus, $currentBookingID, "");
-				}
-				else
-				{
-					$my_rooms[] =  $room_num . ":";
-					$day_use_room = new Room($room_num, null, null, null, "clean", null, "");
-				}
-					
-				insert_dbRooms($day_use_room);
-			}
-		} */
 	}
 	
 	else

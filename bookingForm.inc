@@ -86,7 +86,7 @@ echo '(<span style="font-size:x-small;color:FF0000">*</span> denotes required fi
 					
 <br><span style='font-size:x-small;color:FF0000'>* </span>Hospital <select name="hospital">
 			<?php 
-$hospitals = array("", "Maine Medical Center", "Mercy Hospital", "Specialist", "Spring Harbor Hospital", "Other");	
+$hospitals = array("", "EMMC", "Acadia Hospital", "Specialist", "Other");	
 			foreach($hospitals as $hospital){
 				echo ("<option value='");
 				echo ($hospital. "' ");
@@ -99,7 +99,8 @@ $hospitals = array("", "Maine Medical Center", "Mercy Hospital", "Specialist", "
 <br><span style='font-size:x-small;color:FF0000'>* </span>Department of Treatment  
 <select name="dept">
 			<?php 
-$departments = array("BBCH", "CARDIOLOGY", "MCCP", "NEEDS", "NICU/CCN", "PRENATAL", "SCU", "SPRING HARBOR", "Other", "Outpatient");			
+$departments = array("NICU", "CCN", "Peds Outpatient", "Peds Inpatient", "Peds CancerCare", "PICU", 
+		"Doctor's office", "Levinson Ctr", "Sweetser", "KidsPeach", "Other");			
 			foreach($departments as $department){
 				echo ("<option value='");
 				echo ($department. "' ");
@@ -115,7 +116,7 @@ $departments = array("BBCH", "CARDIOLOGY", "MCCP", "NEEDS", "NICU/CCN", "PRENATA
 			?>
 </select><br>
 
-<span style='font-size:x-small;color:FF0000'>* </span>Submitted by (Social Worker name/phone): <input type="text" size="35" name="referred_by" value="
+<span style='font-size:x-small;color:FF0000'>* </span>Referring Medical Professional (name / phone): <input type="text" size="35" name="referred_by" value="
 <?php 
 echo($tempBooking->get_referred_by());
 ?>"/>
@@ -302,7 +303,7 @@ echo($tempBooking->get_referred_by());
   echo  "<b>Occupants </b>(Name / Relation to Patient / Gender):<br><br />";
   if(empty($last_occupants)) $occupants = $tempBooking->get_occupants();
   else $occupants = $last_occupants;
-  for ($counter = 1; $counter <= 6; $counter++){
+  for ($counter = 1; $counter <= 4; $counter++){
   	  //Before getting information from the occupants array we need to sanitize it
   	  //So we find if it has the appropiate number of colons (:) and act accordingly (add them if needed, move on if not)
   	  $numberOfColons = substr_count($occupants[$counter-1], ":");

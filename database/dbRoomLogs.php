@@ -67,26 +67,6 @@ function build_room_log($date){
     	// rebuild the past room log using functions in the RoomLog class
     	$new_roomLog = new RoomLog($date);
     	insert_dbRoomLog($new_roomLog);
-        /*
-        $query = "SELECT * FROM dbBookings WHERE room_no <> '' AND '".$date."' >= date_in AND ('".$date."' < date_out OR date_out = '')";
-        $result = mysqli_query($con,$query);
-        var_dump($result);
-        $all_rooms = array();
-        while ($result_row = mysqli_fetch_assoc($result)) {
-            $theBooking = build_booking($result_row);
-            $all_rooms[] = $theBooking->get_room_no().":".$theBooking->get_id();
-        }
-        
-        $query = "INSERT INTO dbRoomLogs VALUES('".$date."','".implode(',',$all_rooms)."','','')";
-        $result = mysqli_query($con,$query);
-        // Check if succesful
-        if(!$result) {
-            //print the error
-            echo mysqli_error($con)." Could not insert into dbRoomLogs :".$date."\n";
-            mysqli_close($con);
-            return false;
-        }
-        */
 //    }
     return retrieve_dbRoomLog($date);
 }
