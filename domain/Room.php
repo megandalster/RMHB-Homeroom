@@ -17,7 +17,7 @@
 include_once(dirname(__FILE__).'/../database/dbRooms.php');
 
 class Room {
- 	private $room_no;	    // room number in the house, like "125" or "233"
+ 	private $room_no;	    // room number in the house, like "01" or "21"
  	private $beds;			// bed configuration: string of 2T, 1Q, Q, etc.
  	private $capacity;      // maximum number of persons
 	private $bath;	        // string: "y" or "n" if there's a private bath
@@ -74,13 +74,16 @@ class Room {
 	// use this only if checking in an already-reserved booking
 	function book_me ($booking_id){
 		$r = retrieve_dbRooms($this->room_no,"","");
-        if ($r) {
+		if ($r) {
         	$r->status = "booked";
         //    $r->booking = $booking_id;
             update_dbRooms($r);   
             return $r;
         }
-        else return false;  // can't book if not reserved
+        else {
+        	echo "returning false";
+        	return false;  // can't book if not reserved
+        }
 	}
     function unbook_me ($booking_id){
 		$r = retrieve_dbRooms($this->room_no,"","");

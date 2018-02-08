@@ -4,7 +4,7 @@
  * This program is part of RMH Homeroom, which is free software.
  * It comes with absolutely no warranty.  You can redistribute and/or
  * modify it under the terms of the GNU Public License as published
- * by the Free Software Foundation (see <http://www.gnu.org/licenses/).
+ * by the Free Software Foundation (see <http://www.gnu.org/licenses/).var_dump
 */
 ?>
 
@@ -157,11 +157,11 @@ function print_booking_info($booking){
 	$guests = $booking->get_occupants();
 	// Print each occupant
 	foreach($guests as $currentGuest)
-	  if (strpos($currentGuest,"Present")>0) {
+//	  if (strpos($currentGuest,"Present")>0) {
 	    $i = strpos($currentGuest,":");
 	    if (!$i) $i = strlen($currentGuest);
 		echo ("<br>".substr($currentGuest,0,$i));
-	  }
+//	  }
 	// Print the patient(s) associated with the booking
 	echo "<br><br><b>Patient: </b><br>". $booking->getith_patient(0);
 	for ($i=1; $i<3; $i++)

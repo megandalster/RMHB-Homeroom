@@ -227,7 +227,7 @@ function retrieve_pending_dbBookings ($date) {
  */
 function retrieve_pendingDayUse_dbBookings ($date) {
 	$con=connect();
-	$query = "SELECT * FROM dbBookings WHERE status = 'pending' AND day_use = 'yes' AND day_use_date = '".$date."' ";
+	$query = "SELECT * FROM dbBookings WHERE (status = 'pending' AND day_use = 'yes' AND day_use_date = '".$date."' ";
 	$result = mysqli_query($con,$query);
 	$theBookings = array();
 	while ($result_row = mysqli_fetch_assoc($result)) {

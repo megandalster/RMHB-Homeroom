@@ -177,22 +177,22 @@ function update_room_info($currentRoom,$date){
 		}
 	else{  // reserving a previously empty room
 		    $newBooking = retrieve_dbBookings($newBooking);
-			if ($newBooking) {
+		    echo 'reserving a room';
+		    if ($newBooking) {
 				$pGuest = retrieve_dbPersons($newBooking->get_guest_id());
 				$guestName = $pGuest->get_first_name()." ".$pGuest->get_last_name();
 				
 				// Create the log message
 				$message = "<a href='viewPerson.php?id=".$_SESSION['_id']."'>".$name."</a>".
-				" has reserved <a href='viewPerson.php?id=".$pGuest->get_id()."'>".
-				$guestName."</a>";
+				" has reserved <a href='viewPerson.php?id=".$pGuest->get_id()."'>".$guestName."</a>";
 				// quick fix: don't add a log if the reservation was not successful
-				if ($currentRoom->get_room_no() < 100) // day use, go straight to booking
+				if ($currentRoom->get_room_no() > 20) // day use, go straight to booking
 					if ($newBooking->book_room($currentRoom->get_room_no(),$date)){
 						add_log_entry($message);
 					}
 					else add_log_entry("<a href='viewPerson.php?id=".$_SESSION['_id']."'>".$name."</a>".
 						" failed to book <a href='viewPerson.php?id=".$pGuest->get_id()."'>".$guestName."</a>");
-				else
+				else 
 					if ($newBooking->reserve_room($currentRoom->get_room_no(),$date)){
 						add_log_entry($message);
 					}

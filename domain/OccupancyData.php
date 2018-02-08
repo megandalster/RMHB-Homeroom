@@ -94,7 +94,7 @@ class OccupancyData {
 			$days = round(($bEnd-$bStart) / 86400);
 			$bRoom = $aBooking->get_room_no();
 			$bGuests = $this->occupants_present($aBooking->get_occupants());
-			if ($bRoom=="" || strlen($bRoom)!=3)
+			if ($bRoom=="" || strlen($bRoom)!=2)
 			    $bRoom = "UNK";
 			$this->bookingcounts[$bRoom] += 1;
 			$this->roomcounts[$bRoom] += $days;
@@ -114,9 +114,9 @@ class OccupancyData {
 		}
 		foreach ($allRooms as $room) {
 		    $aRoom = $room->get_room_no();
-		    if($this->bookingcounts_d[substr($aRoom,0,3)] > 0) {
-				$this->bookingcounts[substr($aRoom,0,3)] = 
-					"{$this->bookingcounts[substr($aRoom,0,3)]} ({$this->bookingcounts_d[substr($aRoom,0,3)]})";
+		    if($this->bookingcounts_d[substr($aRoom,0,2)] > 0) {
+				$this->bookingcounts[substr($aRoom,0,2)] = 
+					"{$this->bookingcounts[substr($aRoom,0,2)]} ({$this->bookingcounts_d[substr($aRoom,0,2)]})";
 			}
 		}	
 	}

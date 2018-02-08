@@ -163,8 +163,8 @@ echo($tempBooking->get_referred_by());
             echo '<select name="linked_room">';
             echo "<option value=''></option>";
             foreach ($rooms as $room) {
-            	$room_no = substr($room,0,3);
-            	$booking_id = substr($room,4);
+            	$room_no = substr($room,0,2);
+            	$booking_id = substr($room,3);
             	if ($room_no!=$tempBooking->get_room_no() && $room_no!=$tempBooking->get_linked_room() && $booking_id=="")
             		echo "<option value=".$room.">".$room_no."</option>";
             }
@@ -174,8 +174,8 @@ echo($tempBooking->get_referred_by());
           echo '<select name="room_no">'; 
           echo "<option value=''></option>";
           foreach ($rooms as $room) {
-           $room_no = substr($room,0,3);
-           $booking_id = substr($room,4);
+           $room_no = substr($room,0,2);
+           $booking_id = substr($room,3);
            if ($room_no!=$tempBooking->get_room_no() && $room_no!=$tempBooking->get_linked_room() && $booking_id=="")
               echo "<option value=".$room.">".$room_no."</option>";
           }

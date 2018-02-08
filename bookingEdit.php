@@ -246,15 +246,15 @@ function build_POST_booking($id,$primaryGuest,$referralid) {
         $pendingBooking->set_day_use($_POST['day']);
         if ($_POST['status']!="")
             $pendingBooking->set_status($_POST['status']);
-        $new_room = substr($_POST['room_no'],0,3);
+        $new_room = substr($_POST['room_no'],0,2);
         if ($new_room!="" && $new_room!=$pendingBooking->get_room_no()) {
             $pendingBooking->change_room($pendingBooking->get_room_no(),
-                                substr($_POST['room_no'],0,3),$date_in);
+                                substr($_POST['room_no'],0,2),$date_in);
         }
         if ($_POST['linked_room']=="remove")
         	$pendingBooking->remove_linked_room($date_in);
         else
-        	$pendingBooking->add_linked_room(substr($_POST['linked_room'],0,3),$date_in);
+        	$pendingBooking->add_linked_room(substr($_POST['linked_room'],0,2),$date_in);
         if ($_POST['status']=="active")
             $pendingBooking->set_date_out("");
         else // closed or closed-deceased
@@ -274,7 +274,7 @@ function build_POST_booking($id,$primaryGuest,$referralid) {
     }
     if ($id=='new')  
         $pendingBooking-> add_occupant($primaryGuest->get_first_name()." ".$primaryGuest->get_last_name(),$primaryGuest->get_patient_relation(),$primaryGuest->get_gender(),"Present");
-    for($count = 1 ; $count <= 6 ; $count++){
+    for($count = 1 ; $count <= 4 ; $count++){
         if($_POST['additional_guest_'.$count] != "")
            	$pendingBooking->add_occupant($_POST['additional_guest_'.$count], $_POST['additional_guest_'.$count.'_relation'],
             								$_POST['additional_guest_'.$count.'_gender'], $_POST['additional_guest_'.$count.'_present']);

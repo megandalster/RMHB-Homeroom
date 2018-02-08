@@ -221,7 +221,7 @@ class Booking {
     function book_room ($room_no, $date) {
     	$r = retrieve_dbRooms($room_no,$date,"");
         if ($r) {
-            $r->book_me($this->id);  
+        	$r->book_me($this->id);  
             $this->date_in = $date;	
             $this->room_no = $room_no;
             $this->status = "active";

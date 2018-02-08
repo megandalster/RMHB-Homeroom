@@ -45,12 +45,11 @@ function makenew_booking($p, $additional_guest, $hospital, $department, $mgr_not
 	return $b;
 }
 function room_fix($r) {
-	$valid_rooms = array("125","126","151","152","214","215",
-						"218","223","224","231","232","233",
-						"243","244","245","250","251","252",
-						"253","254","255");
+	$valid_rooms = array("01","02","03","04","05","06",
+						"07","08","09","10","11","12",
+						"13","14");
 	if (strlen($r)>=6)
-	    $room_no = substr($r,3,3);
+	    $room_no = substr($r,3,2);
 	else $room_no = "";
 	return $room_no;
 }

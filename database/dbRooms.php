@@ -19,13 +19,13 @@ include_once(dirname(__FILE__).'/dbBookings.php');
 
 /**
  * Creates a dbRooms table with the following parameters:
- * room_no: the room number eg "233"
+ * room_no: the room number eg "01" or "21"
  * beds: bed configuration: string of 2T, 1Q, Q, etc.
  * capacity: maximum number of guests in a room
  * bath: "y" or "n" depending if a private bath is available
  * status: string of either "clean", "dirty", "booked", "off-line"
  * booking: the current booking id for this room
- * room_notes: any special comments about a room
+ * room_notes: any special comments about a room substr
  */
 /*
  * retrieve all room_no:booking_id pairs for a given date
@@ -47,7 +47,7 @@ function retrieve_all_rooms($date) {
 	}
 	
 	//After getting all of the regular bookings we find the day use boookings
-	if ($date >= date('y-m-d'))
+	if ($date >= date('y-m-d'))  // today and future roomlogs
 	{
 	//	$day_use_pendingBookings = retrieve_pendingDayUse_dbBookings($date);		
 		$day_use_activeBookings = retrieve_active_day_use_dbBookings($date);
@@ -59,7 +59,7 @@ function retrieve_all_rooms($date) {
 		}
 	}
 	
-	else
+	else  // past roomlogs
 	{
 		$day_use_past_active_bookings = retrieve_past_active_day_use_dbBookings($date);
 		$total_day_use_rooms_to_make = count($day_use_past_active_bookings);

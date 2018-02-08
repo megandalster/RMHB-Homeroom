@@ -28,7 +28,7 @@ class RoomLog {
 	private $day_of_year; // Numerical day of the year (1-366)
 	private $day_of_month;// Numerical day of month (1 - 12)
 	private $month_num;	  // Numerical month
-	private $rooms;       // array of 21 room_no:booking_id pairs for this date
+	private $rooms;       // array of 14 room_no:booking_id pairs for this date
 	private $log_notes;	  // manager notes for this day's log
 	private $status;	  // status of this room log; "unpublished", "published" or "archived"
 	/*

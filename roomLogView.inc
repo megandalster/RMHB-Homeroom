@@ -4,12 +4,12 @@
  * This program is part of RMH Homeroom, which is free software.
  * It comes with absolutely no warranty.  You can redistribute and/or
  * modify it under the terms of the GNU Public License as published
- * by the Free Software Foundation (see <http://www.gnu.org/licenses/).
+ * by the Free Software Foundation (see <http://www.gnu.org/licenses/).room.php
 */
 
 // Get the array of rooms
 $rooms = $roomLog->get_rooms();
-$pendingdayusecount = count(retrieve_pendingDayUse_dbBookings ($date));
+$pendingandactivedayusecount = count(retrieve_pendingDayUse_dbBookings ($date)) + count(retrieve_active_day_use_dbBookings ($date));
 ?>
 
 <!-- THIS SECTION DISPLAYS THE 14 ROOMS AND THEIR INFORMATION -->
@@ -23,7 +23,7 @@ for($i = 0; $i < 2; $i++){
 	for($j = 0; $j < 7; $j++){
 		// Retrieve the current room
 		$currentRoomID = substr($rooms[($i*7)+$j],0,2);
-		$currentBookingID = substr($rooms[($i*7)+$j],4);
+		$currentBookingID = substr($rooms[($i*7)+$j],3);
 		//echo ("current booking and room ids".$currentRoomID);
 		//echo ($currentBookingID);
 		$currentRoom = retrieve_dbRooms($currentRoomID,$date,$currentBookingID);
@@ -79,26 +79,26 @@ for($i = 0; $i < 2; $i++){
 
 echo ("</tr></table>");
 
-/*
+
 echo("<p>");
 
 echo ("<b>Day Use Bookings: </b><br>");
 
-$day_rooms = count($rooms) - 21 + $pendingdayusecount;
+$day_rooms = 20+$pendingandactivedayusecount;  // day use room #s begin at 21
 $counter = 0;
 echo ("<br><table align=\"center\">");
 // Use loops to construct each table row and column
 echo ("<tr>");
-for($j = 0; $j < $day_rooms; $j++)
+for($j = 21; $j < 21+$pendingandactivedayusecount; $j++)
 		{
-			$currentRoomID = substr($rooms[$counter+21],0,3);	
-			$currentBookingID = substr($rooms[$counter+21],4);
+			$currentRoomID = substr($rooms[$counter+14],0,2);	
+			$currentBookingID = substr($rooms[$counter+14],3);
 			if ($currentRoomID!="" && $currentRoomID==$j) {
 				$currentRoom = retrieve_dbRooms($currentRoomID,$date,$currentBookingID);
 			    $currentBooking = retrieve_dbBookings($currentBookingID);
 			}
 			else {
-				$currentRoomID = "00".$j;
+				$currentRoomID = $j;
 				insert_dbRooms(new Room($currentRoomID, null, null, null, "clean", null, ""));  //make sure there's a room there
 				$currentBooking=null;
 			}
@@ -119,7 +119,7 @@ for($j = 0; $j < $day_rooms; $j++)
 				if($date == date("y-m-d") && $currentRoom->get_room_notes() != "")
 				    echo "<br /><b>Notes: </b><br>".$currentRoom->get_room_notes();
 				// Display info from the booking, such as the guests and loaners
-				echo ("<br /><b>Guests:</b><br />");
+			//	echo ("<br /><b>Guests:</b><br />");
 				print_booking_info($currentBooking);
 				echo ("</td>");
 				$counter++;
@@ -136,8 +136,6 @@ for($j = 0; $j < $day_rooms; $j++)
 echo ("</tr>");
 
 echo ("</tr></table>");
-
-*/
 
 /**
  * These functions help in printing out information
@@ -162,11 +160,11 @@ function print_booking_info($booking){
 	$guests = $booking->get_occupants();
 	// Print each occupant
 	foreach($guests as $currentGuest) {
-	  if (strpos($currentGuest,"Present")>0) {
+//	  if (strpos($currentGuest,"Present")>0) {
 	  	$j = strpos($currentGuest,":");
 	    if (!$j) $j = strlen($currentGuest);
 		echo ("<br>".substr($currentGuest,0,$j));
-	  }
+//	  }
 	}
 	// Print the patient associated with the booking
 	echo ("<br><b>Patient: </b><br>".$booking->getith_patient(0));

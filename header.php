@@ -13,9 +13,8 @@
 h1 {padding-left: 0px; padding-right:165px;}
 </style>
 <div id="header">
-<!--<br><br><img src="images/rmhHeader.gif" align="center"><br>
-<h1><br><br>RMH Homebase <br></h1>-->
-
+<img src="images/rmhHeader.png" align="center">
+<!--<h1><br><br>Homeroom <br></h1>-->
 </div>
 
 <div align="center" id="navigationLinks">
