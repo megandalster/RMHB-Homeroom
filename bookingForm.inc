@@ -99,8 +99,8 @@ $hospitals = array("", "EMMC", "Acadia Hospital", "Specialist", "Other");
 <br><span style='font-size:x-small;color:FF0000'>* </span>Department of Treatment  
 <select name="dept">
 			<?php 
-$departments = array("NICU", "CCN", "Peds Outpatient", "Peds Inpatient", "Peds CancerCare", "PICU", 
-		"Doctor's office", "Levinson Ctr", "Sweetser", "KidsPeach", "Other");			
+$departments = array("NICU", "CCN", "Prenatal", "Peds Outpatient", "Peds Inpatient", "Peds CancerCare", "PICU", 
+		"Doctor's office", "Levinson Ctr", "Sweetser", "Kids Peace", "Other");			
 			foreach($departments as $department){
 				echo ("<option value='");
 				echo ($department. "' ");
