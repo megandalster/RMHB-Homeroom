@@ -15,17 +15,16 @@
 			<?PHP include('header.php');?>
 			<div id="content">
 				<p><strong>Background</strong><br /><br />
-				<i>Homeroom</i> is a web-based room scheduling system developed at <a href="http://www.bowdoin.edu" TARGET="_BLANK">Bowdoin College</a> for the Ronald McDonald House in Portland, Maine.   
-				It was first designed and implemented in spring semester 2011 by two Bowdoin Students (Alex Lucyk and Jesus Navarro) and
-				a Bowdoin Professor (<a href="mailto:allen@npfi.org">Allen Tucker</a>).  The current version was implemented in fall 2013 by Felix Emiliano, Luis Rojas, David Phipps, Ruben Martinez, and the instructor, working with the
-				help of RMH staff members Gabrielle Booth and Karla Prouty.
+				<i>Homeroom</i> is a web-based room scheduling system developed at <a href="https://www.bowdoin.edu/computer-science/" TARGET="_BLANK">Bowdoin College</a> for the Ronald McDonald Houses in Portland and Bangor, Maine.   
+				It was designed and implemented in 2011 and 2013 by two teams of Bowdoin Students (Alex Lucyk, Jesus Navarro, Felix Emiliano, Luis Rojas, 
+				David Phipps, and Ruben Martinez), a Bowdoin Professor (<a href="mailto:allen@npfi.org">Allen Tucker</a>), and RMH staff members Gabrielle Booth and Karla Prouty.
 				<p><strong>System Access</strong><br /><br />
 Because <i>Homeroom</i> must protect the privacy of individual clients at the Ronald McDonald House, access to the system is
-limited.  If you have system access and have forgotten your Username or Password, please contact the <a href="mailto:housemngr@rmhportland.org" TARGET="_BLANK">House Manager</a>.
+limited.  If you have system access and have forgotten your Username or Password, please contact the House Manager.
                 </p>
-				<p> <i>Homeroom</i> is free and open source software (see <a href="http://code.google.com/p/rmh-homeroomcivi" TARGET="_BLANK">http://code.google.com/p/rmh-homeroomcivi</a>).  
-				Its source code can be freely downloaded and adapted to support the room scheduling needs of other nonprofit organizations.  
-				For more information about the capabilities or adaptability of <i>Homeroom</i> to other settings, please visit the website <a href="https://npfi.org" TARGET="_BLANK">https://npfi.org</a>.
+				<p> <i>Homeroom</i> is free and open source software. Its source code can be freely downloaded and adapted to support the room scheduling needs of other nonprofit organizations  
+				(see <a href="https://github.com/megandalster/rmh-homeroomcivi/wiki" TARGET="_BLANK">https://github.com/megandalster/rmh-homeroomcivi/wiki</a>).  
+				For more information about <i>Homeroom</i>, please visit the website <a href="https://npfi.org/the-homeroom-project" TARGET="_BLANK">https://npfi.org/the-homeroom-project</a>.
 				</p>
 				<!-- below is the footer that we're using currently-->
 				
