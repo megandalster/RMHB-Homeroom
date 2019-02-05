@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require_once('/Applications/MAMP/htdocs/rmh-homeroomcivi/domain/Person.php');
+require_once(dirname(__FILE__).'/../domain/Person.php');
 class PersonTest extends TestCase {
     function testPerson() {    
         

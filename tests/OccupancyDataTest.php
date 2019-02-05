@@ -8,8 +8,8 @@ class OccupancyDataTest extends TestCase {
 		$jan0212 = date("y-m-d", mktime(0, 0, 0, 1, 2, 2012));
         $d = new OccupancyData($jan0112,$jan0212,"");
         $rc = $d->get_room_counts();
-        $this->assertEquals($rc["223"], 1.0);
-		$this->assertEquals($rc["125"], 0);		 
+        $this->assertEquals($rc["11"], 0);
+		$this->assertEquals($rc["12"], 0);		 
   	}
 }
 

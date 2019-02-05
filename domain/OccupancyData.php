@@ -222,11 +222,11 @@ class OccupancyData {
 	// compute hospital counts
 	function compute_hospitalcounts($allBookings) {
 		$this->hospitalcounts = array();
-		$this->hospitalcounts["other"] = 0;
+		$this->hospitalcounts["UNK"] = 0;
 		$this->hospitalcounts_d = array();
-		$this->hospitalcounts_d["other"]=0;
+		$this->hospitalcounts_d["UNK"]=0;
 		$this->hospitalguestcounts = array();
-		$this->hospitalguestcounts["other"] = 0;
+		$this->hospitalguestcounts["UNK"] = 0;
 		$hospitals = array();
 		foreach ($allBookings as $aBooking){
 			$bHospital = $aBooking->get_hospital();

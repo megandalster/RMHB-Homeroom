@@ -16,7 +16,7 @@ class RoomLogTest extends TestCase {
 		$this->assertEquals($rl->get_day_of_year(), date("z", $test_time) + 1);
 		$this->assertEquals($rl->get_year(), date("Y", $test_time));
 		$this->assertEquals($rl->get_status(), "unpublished");
-		$this->assertEquals(sizeof($rl->get_rooms()), 21);
+		$this->assertEquals(sizeof($rl->get_rooms()), 14);
 		$this->assertEquals($rl->get_name(), "February 7, 2011");
 		
 		// New date for testing that has seconds/hours/minutes
