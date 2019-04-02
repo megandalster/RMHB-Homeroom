@@ -36,8 +36,8 @@ class dbBookingsTest extends TestCase {
         $this->assertEquals($bretrieved->get_status(),"active");
         $this->assertEquals($bretrieved->get_id(), $b->get_id());
         $this->assertEquals($bretrieved->get_room_no(), "12");
-   //     $r = retrieve_dbRooms($bretrieved->get_room_no(),$today,$bretrieved->get_id());
-   //     $this->assertEquals($r->get_booking_id(),$bretrieved->get_id());
+        $r = retrieve_dbRooms($bretrieved->get_room_no(),$today,$bretrieved->get_id());
+        $this->assertEquals($r->get_booking_id(),$bretrieved->get_id());
         $today = date('y-m-d');
         $this->assertEquals($bretrieved->get_date_in(), $today);
         $this->assertEquals($bretrieved->get_flag(), "new");
