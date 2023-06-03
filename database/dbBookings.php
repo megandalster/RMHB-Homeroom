@@ -253,7 +253,7 @@ function retrieve_all_pending_dbBookings () {
 //retrieve all bookings that were closed between $date and $enddate, inclusive
 function retrieve_all_closed_dbBookings ($date, $enddate, $room_no) {
 	$con=connect();
-    $query = "SELECT * FROM dbBookings WHERE status LIKE '%closed%' AND date_out >= '"
+    $query = "SELECT * FROM dbBookings WHERE (status LIKE '%closed%' OR status = 'active') AND date_out >= '"
              .$date."' AND date_out <= '".$enddate."' AND room_no LIKE '%".$room_no."%' ORDER BY date_in";
     $result = mysqli_query($con,$query);
     $theBookings = array();
