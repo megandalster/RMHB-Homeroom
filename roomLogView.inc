@@ -17,13 +17,13 @@ $pendingandactivedayusecount = count(retrieve_pendingDayUse_dbBookings ($date)) 
 echo ("<table align=\"center\">");
 
 // Use loops to construct each table row and column
-for($i = 0; $i < 2; $i++){
+for($i = 0; $i < 4; $i++){
 	// Three rows
 	echo ("<tr>");
-	for($j = 0; $j < 7; $j++){
+	for($j = 0; $j < 4 && ($i*4)+$j < 14; $j++){
 		// Retrieve the current room
-		$currentRoomID = substr($rooms[($i*7)+$j],0,2);
-		$currentBookingID = substr($rooms[($i*7)+$j],3);
+		$currentRoomID = substr($rooms[($i*4)+$j],0,2);
+		$currentBookingID = substr($rooms[($i*4)+$j],3);
 		//echo ("current booking and room ids".$currentRoomID);
 		//echo ($currentBookingID);
 		$currentRoom = retrieve_dbRooms($currentRoomID,$date,$currentBookingID);
@@ -38,7 +38,7 @@ for($i = 0; $i < 2; $i++){
         else $roomStatus = "booked";
 		$statusmsg = $roomStatus;
 		switch ($roomStatus) {
-		    case "clean": $statusColor = "green"; $statusbg="PaleGreen"; break;
+		    case "clean": $statusColor = "green"; $statusbg="White"; break;
 		    case "reserved": $statusColor = "orange"; $statusbg="White"; break;
 		    case "dirty": $statusColor = "red"; $statusmsg = "to be cleaned"; $statusbg="Pink"; break;
 		    case "booked": $statusColor = "brown"; $statusbg="White"; break;
@@ -67,7 +67,7 @@ for($i = 0; $i < 2; $i++){
 		echo("<br><b>Beds: </b>".$currentRoom->get_beds());
 		// Print if there is a private bath
 		if($currentRoom->get_bath() == "y"){
-			echo (" bath");
+			echo ("<b> Bath</b>");
 		}
 		if($date == date("y-m-d") && $currentRoom->get_room_notes() != "")
 		    echo "<br /><b>Notes: </b><br><span style='font-weight:bold;color:FF0000'>".$currentRoom->get_room_notes().'</span>';
@@ -78,6 +78,38 @@ for($i = 0; $i < 2; $i++){
 			print_booking_info($currentBooking);
 		// End this table item. Finish the link if it was started
 		echo ("</td>");
+		// see if there is a bath after this room
+		$bathID = array_search($currentRoomID, array("B1|2"=>"01","B3|4"=>"03","B6|7"=>"06","B9|10"=>"09","B11|12"=>"11","B13|14"=>"13"));
+		if ($bathID){ 
+		    // pull its status from the dbRooms table and display it
+		    $currentBath = retrieve_dbRooms($bathID,$date,$currentBookingID);
+		    if ($date==date('y-m-d'))
+		        $roomStatus = $currentBath->get_status();
+		    else
+		        $roomStatus = "clean";
+		    $statusmsg = $roomStatus;
+		    switch ($roomStatus) {
+		            case "clean": $statusColor = "green"; $statusbg="White"; break;
+		            case "dirty": $statusColor = "red"; $statusmsg = "to be cleaned"; $statusbg="Pink"; break;
+		            case "off-line": $statusColor = "blue"; $statusbg="Gainsboro"; break;
+		            default: $statusColor = null; $statusbg="White";
+		    }
+		    echo ("<td id=\"nav\" onclick=\"window.location.href='room.php?room=".$bathID."&date=".$date.
+		        "&bookingID=".$currentBookingID."&status=".$roomStatus."'\"");
+		    echo ("style='vertical-align:text-top; background-color:".$statusbg."'>");
+		    
+		    // The ID of the room and the status
+		    echo ("<b style=\"float:left\">".$bathID."</b>");
+		    echo ("<b style=\"float:right; color:".$statusColor."\">");
+		    if ($date==date('y-m-d'))
+		        echo ($statusmsg);
+		    echo "</b><br><b>Bath</b>";
+		    
+		    if ($currentBath->get_room_notes() != "")
+		        echo "<br /><b>Notes: </b><br><span style='font-weight:bold;color:FF0000'>".$currentBath->get_room_notes().'</span>';
+		    echo "<br /><br /><br />";
+		    echo ("</td>");
+		}
 	}
 	echo ("</tr>");
 }
