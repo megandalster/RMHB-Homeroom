@@ -46,6 +46,7 @@ $roomStatus = $_GET['status'];
 	<?php 
 	// Prep work for the room
 	$currentRoom = retrieve_dbRooms($roomID,$date,$bookingID);
+
 	// Check if the room is valid and if any data was recently changed
 	if($currentRoom instanceof Room){
 		// Check if the room has been modified
@@ -116,7 +117,14 @@ function update_room_info($currentRoom,$date){
 	}	
 		// Checkout the booking if the option was selected (or checkout deceased)
 	if($newBooking == "Checkout"){
-			    $currentRoom->set_status("dirty");
+			  $currentRoom->set_status("dirty");
+
+				// get the bathroom room number associated with this room and set that to dirty
+				if ($bathroom_no = $currentRoom->get_bathroom_no()) {
+					$bathroom = retrieve_dbRooms($bathroom_no,$date,$bookingID);
+					if ($bathroom) $bathroom->set_status("dirty");
+				}
+
 				//retrieve the booking and check it out
 				$newBooking = retrieve_dbBookings($currentRoom->get_booking_id());
 				if ($newBooking) {
@@ -136,7 +144,14 @@ function update_room_info($currentRoom,$date){
 				}
 	}
 	else if($newBooking == "Checkout (Deceased)") { //closing a booking for deceased patient
-			    $currentRoom->set_status("dirty");
+			  $currentRoom->set_status("dirty");
+
+				// get the bathroom room number associated with this room and set that to dirty
+				if ($bathroom_no = $currentRoom->get_bathroom_no()) {
+					$bathroom = retrieve_dbRooms($bathroom_no,$date,$bookingID);
+					if ($bathroom) $bathroom->set_status("dirty");
+				}
+
 				//retrieve the booking and check it out
 				$newBooking = retrieve_dbBookings($currentRoom->get_booking_id());
 				if ($newBooking) {

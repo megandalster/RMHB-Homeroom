@@ -39,6 +39,27 @@ class Room {
 		$this->room_notes = $room_notes; 
 	}
 	// *************** Getters ***************
+
+	// get the bathroom number associated with this room
+	function get_bathroom_no () {
+		switch ($this->room_no) {
+			case "01": return "B1|2";
+			case "02": return "B1|2";
+			case "03": return "B3|4";
+			case "04": return "B3|4";
+			case "05": return "false";
+			case "06": return "B6|7";
+			case "07": return "B6|7";
+			case "08": return "false";
+			case "09": return "B9|10";
+			case "10": return "B9|10";
+			case "11": return "B11|12";
+			case "12": return "B11|12";
+			case "13": return "B13|14";
+			case "14": return "B13|14";
+			default: return "false";
+		}
+	}
 	
 	function get_room_no () {
 		return $this->room_no;

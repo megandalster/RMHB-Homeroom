@@ -40,7 +40,7 @@ for($i = 0; $i < 4; $i++){
 		switch ($roomStatus) {
 		    case "clean": $statusColor = "green"; $statusbg="White"; break;
 		    case "reserved": $statusColor = "orange"; $statusbg="White"; break;
-		    case "dirty": $statusColor = "red"; $statusmsg = "to be cleaned"; $statusbg="Pink"; break;
+		    case "dirty": $statusColor = "red"; $statusmsg = "dirty"; $statusbg="Pink"; break;
 		    case "booked": $statusColor = "brown"; $statusbg="White"; break;
 		    case "off-line": $statusColor = "blue"; $statusbg="Gainsboro"; break;
 		    default: $statusColor = null; $statusbg="White";
@@ -52,7 +52,13 @@ for($i = 0; $i < 4; $i++){
 			echo ("style='vertical-align:text-top; background-color:".$statusbg."'>");
 
 		// The ID of the room and the status
-		echo ("<b style=\"float:left\">".$currentRoomID."</b>");
+		// display "apt" instead of "08"
+		if ($currentRoomID == "08") {
+			echo ("<b style=\"float:left\">apt</b>");
+		}
+		else {
+			echo ("<b style=\"float:left\">".$currentRoomID."</b>");
+		}
 		// Print the status of the room
 		
 		
@@ -90,7 +96,7 @@ for($i = 0; $i < 4; $i++){
 		    $statusmsg = $roomStatus;
 		    switch ($roomStatus) {
 		            case "clean": $statusColor = "green"; $statusbg="White"; break;
-		            case "dirty": $statusColor = "red"; $statusmsg = "to be cleaned"; $statusbg="Pink"; break;
+		            case "dirty": $statusColor = "red"; $statusmsg = "dirty"; $statusbg="Pink"; break;
 		            case "off-line": $statusColor = "blue"; $statusbg="Gainsboro"; break;
 		            default: $statusColor = null; $statusbg="White";
 		    }
@@ -152,7 +158,13 @@ for($j = 21; $j < 21+$pendingandactivedayusecount; $j++)
 				echo ("style=\"vertical-align:text-top\">");
 		
 				// The ID of the room and the status
-				echo ("<b style=\"float:left\">".$currentRoomID."</b>");
+				// display "apt" instead of "08"
+				if ($currentRoomID == "08") {
+					echo ("<b style=\"float:left\">apt</b>");
+				}
+				else {
+					echo ("<b style=\"float:left\">".$currentRoomID."</b>");
+				}
 				if($date == date("y-m-d") && $currentRoom->get_room_notes() != "")
 				    echo "<br /><b>Notes: </b><br>".$currentRoom->get_room_notes();
 				// Display info from the booking, such as the guests and loaners
@@ -165,7 +177,13 @@ for($j = 21; $j < 21+$pendingandactivedayusecount; $j++)
 			    echo ("<td id=\"nav\" onclick=\"window.location.href='room.php?room=".$currentRoomID."&day=yes"."&date=".$date."&bookingID=&status=".$roomStatus."'\"");
 				echo ("style=\"vertical-align:text-top\">");
 				
-				echo ("<b style=\"float:left\">".$currentRoomID."</b>");
+				// display "apt" instead of "08"
+				if ($currentRoomID == "08") {
+					echo ("<b style=\"float:left\">apt</b>");
+				}
+				else {
+					echo ("<b style=\"float:left\">".$currentRoomID."</b>");
+				}
 				echo "<br /><br /><br />";
 				echo ("</td>");
 			}	
