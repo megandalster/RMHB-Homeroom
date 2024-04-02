@@ -173,8 +173,12 @@
 						    
 			  //prints links for viewing and editing		
 			  //confirms on click if user wants to delete the guest    
-			  
-		  $guestName = $current_guest->get_first_name()." ".$current_guest->get_last_name();
+			  if($current_guest==false) {
+          $guestName = "this guest";
+        }
+        else {
+          $guestName = $current_guest->get_first_name()." ".$current_guest->get_last_name();
+        }
 			  echo('<td> <a href="viewBookings.php?id=update&bookingid='.$current_booking->get_id().'">view</a>
 						 <a href="viewBookings.php?id=delete&bookingid='.$current_booking->get_id().'" onclick= " if (!confirm(\'Are you sure you want to delete '.$guestName.'?\')) return false;">delete</a></td>');	
 			  
@@ -201,8 +205,8 @@
 /**
 * update_booking retrieves and sanitizes $_POST data, and uses it to update
 * the booking with $b_id, then updates the databse
-* @param   id of the booking to update
-* @return booking updated, or false if unsuccessful
+* @param   string    $b_id the id of the booking to update
+* @return the updated booking or false if unsuccessful
 */
 function update_booking($b_id){
   
