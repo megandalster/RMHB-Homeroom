@@ -124,6 +124,7 @@
 			//headings to the table, clicking a heading sorts by that type of data
 			//or reverses the sort if currently sorted by that type
 			echo('<p><table border="0"; align="left"><tr>');
+      echo('<td> Date In </td>');
 			echo('<td> <a href= "viewBookings.php?id=pending'.$r1.'">Date Submitted </a></td>');
 			echo('<td> Primary Guest</td>');
 			echo('<td> Patient Name </td>');
@@ -147,6 +148,25 @@
 				  $color = "LightGrey";
 						    
 			  echo('<tr border="0"; align="left">');
+
+        //prints the date in
+        $date_in = $current_booking->get_date_in();
+        // Parse the input date string
+        if ($date_in == "Will Call") {
+          $outputDate = "Will Call";
+        }
+        elseif ($date_in == "" || $date_in == false) {
+          $outputDate = "Unknown";
+        }
+        else {
+          // Parse the input date string
+          $date = DateTime::createFromFormat('y-m-d', $date_in);
+          // Format the date into the desired output format
+          $outputDate = $date->format('M j, Y');
+        }
+
+        echo('<td align="center" bgcolor='.$color.'>'.$outputDate.'</td>');
+        //echo('<td align="center" bgcolor='.$color.'>'.$current_booking->get_date_in().'</td>');
 
 			  //prints the date submitted
 			  echo('<td align="center" bgcolor='.$color.'>'.date_string($current_booking->get_date_submitted()).'</td>'.
