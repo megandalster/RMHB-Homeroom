@@ -124,8 +124,8 @@
 			//headings to the table, clicking a heading sorts by that type of data
 			//or reverses the sort if currently sorted by that type
 			echo('<p><table border="0"; align="left"><tr>');
-      echo('<td> Date In </td>');
-			echo('<td> <a href= "viewBookings.php?id=pending'.$r1.'">Date Submitted </a></td>');
+      echo('<td> <a href= "viewBookings.php?id=pending'.$r1.'">Date In</a></td>');
+			//echo('<td> <a href= "viewBookings.php?id=pending'.$r1.'">Date Submitted </a></td>');
 			echo('<td> Primary Guest</td>');
 			echo('<td> Patient Name </td>');
 			echo('<td> Status </td>');
@@ -169,8 +169,8 @@
         //echo('<td align="center" bgcolor='.$color.'>'.$current_booking->get_date_in().'</td>');
 
 			  //prints the date submitted
-			  echo('<td align="center" bgcolor='.$color.'>'.date_string($current_booking->get_date_submitted()).'</td>'.
-				   '<td align="center" bgcolor='.$color.'>');
+			  //echo('<td align="center" bgcolor='.$color.'>'.date_string($current_booking->get_date_submitted()).'</td>'.
+				echo('<td align="center" bgcolor='.$color.'>');
 			  
 			  //pulls out array of primary guest id's
 			  $guest_id = $current_booking->get_guest_id();
